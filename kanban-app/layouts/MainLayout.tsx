@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Menu, LayoutGrid, List } from "lucide-react"
+import { Mail, Menu, LayoutGrid, List, Kanban } from "lucide-react"
 import {
     useState,
     type PropsWithChildren,
@@ -98,14 +98,18 @@ const MainLayout = ({
 
     return (
         <div className="flex h-full">
-            <aside className="h-full w-48 max-lg:hidden xl:w-60 2xl:w-80">
+            <aside className="h-full w-48 p-3 max-lg:hidden xl:w-60 2xl:w-80">
+                <div className="flex h-[3.25rem] items-start justify-center gap-1 ">
+                    <Kanban className="h-6 w-6" />
+                    <h2 className="[line-height:1em]">Board</h2>
+                </div>
                 <nav className="flex flex-col">
                     {[...new Array(5)].map((_, idx) => (
                         <ButtonWithIcon
                             icon={<Mail className="h-4 w-4" />}
                             variant="ghost"
                             key={idx}
-                            className="text-xl xl:text-2xl"
+                            className="text-sm sm:text-base 2xl:text-xl"
                         >
                             {`Navigation ${idx}`}
                         </ButtonWithIcon>
@@ -113,7 +117,7 @@ const MainLayout = ({
                 </nav>
             </aside>
             <div className="flex flex-1 flex-col">
-                <div className="flex w-full justify-between bg-purple-500 p-4">
+                <div className="flex h-16 w-full justify-between bg-purple-500 px-6 py-3">
                     <div className="flex items-center gap-4">
                         <SidebarSheet
                             button={
@@ -128,10 +132,10 @@ const MainLayout = ({
                             orientation="vertical"
                             className="lg:hidden"
                         />
-                        <div className="px-4">
+                        <div className="max-lg:pl-4">
                             <Input
                                 placeholder="Search"
-                                className="w-40 text-base transition-[width] duration-300 sm:w-48 sm:focus-visible:w-60 md:text-lg lg:text-xl"
+                                className="w-40 text-base transition-[width] duration-300 sm:w-48 sm:focus-visible:w-60 "
                                 onChange={debounce(handleSearch, 500)}
                             />
                         </div>
