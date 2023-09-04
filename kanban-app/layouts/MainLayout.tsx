@@ -26,7 +26,7 @@ import { setCookie } from "cookies-next"
 
 export const ViewContext = createContext<ViewType>("grid")
 
-export type ViewType = "grid" | "list" | undefined
+export type ViewType = "grid" | "list" | null
 
 const ViewToggle = ({
     opts,
@@ -85,7 +85,7 @@ const SidebarSheet = ({
 const MainLayout = ({
     viewTypeCookie,
     children,
-}: PropsWithChildren<{ viewTypeCookie: string | undefined }>) => {
+}: PropsWithChildren<{ viewTypeCookie: string | null }>) => {
     const [viewType, setViewType] = useState<ViewType>(
         (viewTypeCookie as ViewType) ?? "grid",
     )
