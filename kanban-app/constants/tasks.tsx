@@ -1,5 +1,6 @@
+import type { ListType } from "./lists"
+
 export type PriorityType = "LOW" | "MEDIUM" | "HIGH"
-export type ListType = "backlog" | "todo" | "done"
 
 export type Task = {
     id: string
@@ -7,7 +8,7 @@ export type Task = {
     title: string
     priority: PriorityType
     weight: number
-    assignedTo: string
+    assignee: string
     listType: ListType | Omit<ListType, string>
 }
 
@@ -18,7 +19,7 @@ const defaultTasks: Task[] = [
         title: "Being able to rename and edit users lorem rename and edit users",
         priority: "HIGH",
         weight: 8,
-        assignedTo: "eda",
+        assignee: "eda",
         listType: "backlog",
     },
     {
@@ -27,7 +28,7 @@ const defaultTasks: Task[] = [
         title: "Being able to rename and edit users lorem rename and edit users",
         priority: "LOW",
         weight: 5,
-        assignedTo: "eda",
+        assignee: "eda",
         listType: "todo",
     },
     {
@@ -36,7 +37,7 @@ const defaultTasks: Task[] = [
         title: "Being able to rename and edit users lorem rename and edit users",
         priority: "LOW",
         weight: 5,
-        assignedTo: "onur",
+        assignee: "onur",
         listType: "todo",
     },
     {
@@ -45,7 +46,7 @@ const defaultTasks: Task[] = [
         title: "Being able to rename and edit users lorem rename and edit users",
         priority: "MEDIUM",
         weight: 3,
-        assignedTo: "tolga",
+        assignee: "tolga",
         listType: "backlog",
     },
     {
@@ -54,7 +55,7 @@ const defaultTasks: Task[] = [
         title: "Being able to rename and edit users lorem rename and edit users",
         priority: "HIGH",
         weight: 8,
-        assignedTo: "onur",
+        assignee: "onur",
         listType: "backlog",
     },
     {
@@ -63,7 +64,7 @@ const defaultTasks: Task[] = [
         title: "Being able to rename and edit users lorem rename and edit users",
         priority: "LOW",
         weight: 13,
-        assignedTo: "onur",
+        assignee: "onur",
         listType: "done",
     },
 ]
