@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-    @apply text-[14px] sm:text-[16px] 2xl:text-[20px];
+    @apply text-[14px] md:text-[16px] 2xl:text-[20px];
 }
 
 @layer base {
