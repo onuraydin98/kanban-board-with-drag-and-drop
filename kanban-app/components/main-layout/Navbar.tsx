@@ -99,7 +99,7 @@ const Navbar = ({ viewTypeConfig }: NavbarProps) => {
     }
 
     return (
-        <>
+        <div className="flex h-16 w-full justify-between px-6 py-3">
             <div className="flex items-center gap-4">
                 <SidebarSheet
                     button={
@@ -114,7 +114,7 @@ const Navbar = ({ viewTypeConfig }: NavbarProps) => {
                 <div className="max-lg:pl-4">
                     <Input
                         placeholder="Search"
-                        className="w-40 text-base transition-[width] duration-300 sm:w-48 sm:focus-visible:w-60 "
+                        className="w-40 text-base ring-offset-0 transition-[width] duration-300 focus-visible:ring-0 dark:border-slate-200 dark:bg-slate-200 dark:text-black dark:ring-offset-0 sm:w-48 sm:focus-visible:w-60"
                         onChange={debounce(handleSearch, 500)}
                     />
                 </div>
@@ -130,7 +130,7 @@ const Navbar = ({ viewTypeConfig }: NavbarProps) => {
                     Add
                 </Button> */}
             </div>
-        </>
+        </div>
     )
 }
 
