@@ -19,7 +19,7 @@ import { Button, ButtonWithIcon } from "@components/ui/button"
 type NavigationMenu = {
     text: string
     href: string
-    icon: React.ReactElement<LucideProps> // WTF - LucideIcon
+    icon: React.ReactElement<LucideProps>
     isActive: boolean
 }
 
@@ -79,10 +79,17 @@ const lowerNavigationMenu: NavigationMenu[] = [
 
 const Sidebar = () => {
     return (
-        <aside className="fixed flex h-full w-52 flex-col p-3 max-lg:hidden 2xl:w-64 ">
-            <div className="flex h-[3.25rem] items-start justify-center gap-1 ">
-                <Kanban className="h-6 w-6" />
-                <h2 className="[line-height:1em]">Board</h2>
+        <aside className="fixed flex h-full w-52 flex-col p-3 max-lg:hidden 2xl:w-64">
+            <div className="dark:dark-gradient-text-r group flex h-[3.25rem] items-start justify-start gap-1 pl-4 transition-colors hover:text-slate-50">
+                <Kanban
+                    className={cn(
+                        "group-hover:animate-coin-flip h-6 w-6 text-purple-700 delay-200 duration-200 group-hover:text-slate-50",
+                        // "rounded-full shadow-[inset_0px_-2px_2px_white]" Ball shadow?
+                    )}
+                />
+                <h2 className="delay-150 duration-150 [line-height:1em]">
+                    Board
+                </h2>
             </div>
             {/* Navigation Menus */}
             <nav className="flex flex-1 flex-col items-start justify-between">
@@ -95,9 +102,9 @@ const Sidebar = () => {
                                 key={element.text}
                                 type="button"
                                 className={cn(
-                                    "w-full items-center justify-start gap-2 text-base hover:text-gray-600 dark:hover:text-slate-200 ",
+                                    "w-full items-center justify-start gap-2 text-base hover:text-slate-700 dark:hover:text-slate-200",
                                     element.isActive &&
-                                        "bg-slate-100  dark:bg-slate-800 ",
+                                        "bg-slate-100 dark:bg-slate-800",
                                 )}
                             >
                                 <a href={element.href}>{element.text}</a>
@@ -115,8 +122,9 @@ const Sidebar = () => {
                                 key={element.text}
                                 type="button"
                                 className={cn(
-                                    "w-full items-center justify-start gap-2 text-base",
-                                    element.isActive && "bg-slate-700",
+                                    "w-full items-center justify-start gap-2 text-base hover:text-slate-700 dark:hover:text-slate-200",
+                                    element.isActive &&
+                                        "bg-slate-100 dark:bg-slate-800",
                                 )}
                             >
                                 <a href={element.href}>{element.text}</a>
@@ -126,14 +134,18 @@ const Sidebar = () => {
                 </ul>
             </nav>
             <Separator
+                orientation="vertical"
+                className="absolute ml-[12.2rem] h-[calc(100%_-_1.8rem)] w-[2px] dark:bg-slate-700 2xl:ml-[15.2rem]"
+            />
+            <Separator
                 orientation="horizontal"
-                className="sm my-2 h-[2px] bg-white"
+                className="sm my-2 h-[2px] dark:bg-slate-700"
             />
             <div className="w-full">
                 <Button
                     variant="ghost"
                     type="button"
-                    className="w-full items-center justify-start gap-2 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-base text-transparent"
+                    className="w-full items-center justify-start gap-2 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-base text-transparent hover:text-slate-700 dark:hover:text-slate-200"
                 >
                     <Avatar src="https://github.com/shadcn.png" alt="@shadcn" />
                     Eric Clarkin
