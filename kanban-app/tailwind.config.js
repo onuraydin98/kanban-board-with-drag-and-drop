@@ -19,7 +19,7 @@ module.exports = {
         },
         extend: {
             boxShadow: {
-                "inner-custom": "inset -2px 1px 12px 1px #9333ea",
+                "inner-custom": "inset 0px 0px 13px -4px #7e22cd",
             },
             keyframes: {
                 "accordion-down": {
@@ -30,15 +30,19 @@ module.exports = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: 0 },
                 },
-                // "borderRotate": {
-                //     "100%" :{
-                //         --angle: 420deg;
-                //     }
-                // }
+                "coin-flip": {
+                    "0%": {
+                        transform: "rotate3d(0, 0, 0, 0deg)",
+                    },
+                    "100%": {
+                        transform: "rotate3d(1, 1, 1, 360deg)",
+                    },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+                "coin-flip": "coin-flip 1s cubic-bezier(0.22, 0.61, 0.36, 1)",
             },
         },
         screens: {
