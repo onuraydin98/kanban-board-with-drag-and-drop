@@ -33,7 +33,7 @@ const List = ({ className, id, tasks, ...props }: ListProps) => {
         >
             <div
                 className={cn(
-                    "xs:grid xs:grid-cols-2 relative flex min-h-[200px] flex-col gap-4 overflow-y-auto rounded-md bg-gray-800 p-4",
+                    "relative flex min-h-[200px] flex-col gap-4 overflow-y-auto rounded-md p-4 dark:bg-slate-800 xs:grid xs:grid-cols-2",
                     // "xs:grid @lg/main:grid-cols-2 @4xl/main:grid-cols-3 ",
                     viewType === "grid" &&
                         "max-h-[calc(100dvh_-_9rem)] md:flex",
