@@ -19,13 +19,11 @@ import {
     type ChangeEvent,
     type SetStateAction,
     type Dispatch,
-    useMemo,
     useCallback,
 } from "react"
+import useListStore from "@stores/useListStore"
+import generateId from "@utilities/generateId"
 import type { ViewType } from "@layouts/MainLayout"
-import useListStore from "@/stores/useListStore"
-import { defaultTasks } from "@/constants"
-import generateId from "@/utilities/generateId"
 
 type NavbarProps = {
     viewTypeConfig: [ViewType, Dispatch<SetStateAction<ViewType>>]
@@ -62,6 +60,7 @@ const ViewToggle = ({
     const viewType = viewState === "grid" ? "list" : "grid"
 
     return (
+        // TODO: Belki animasyon eklenebilir
         <ButtonWithIcon
             icon={
                 viewState === "grid" ? (
@@ -80,7 +79,7 @@ const ViewToggle = ({
                 })
             }}
             variant="outline"
-            className="max-md:hidden"
+            className="bg-inherit dark:bg-inherit max-md:hidden"
         />
     )
 }
@@ -88,8 +87,6 @@ const ViewToggle = ({
 const Navbar = ({ viewTypeConfig }: NavbarProps) => {
     const [viewType, setViewType] = viewTypeConfig
     const [lists, addTask] = useListStore(state => [state.lists, state.addTask])
-
-    // const generatedId = useMemo(() => generateId(), [lists])
     const generateID = useCallback(() => generateId(), [lists])
 
     const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -99,38 +96,44 @@ const Navbar = ({ viewTypeConfig }: NavbarProps) => {
     }
 
     return (
-        <div className="flex h-16 w-full justify-between px-6 py-3">
-            <div className="flex items-center gap-4">
-                <SidebarSheet
-                    button={
-                        <ButtonWithIcon
-                            icon={<Menu className="h-4 w-4" />}
-                            variant="ghost"
-                            className="px-3 py-0 lg:hidden"
-                        />
-                    }
-                />
-                <Separator orientation="vertical" className="lg:hidden" />
-                <div className="max-lg:pl-4">
-                    <Input
-                        placeholder="Search"
-                        className="w-40 text-base ring-offset-0 transition-[width] duration-300 focus-visible:ring-0 dark:border-slate-200 dark:bg-slate-200 dark:text-black dark:ring-offset-0 sm:w-48 sm:focus-visible:w-60"
-                        onChange={debounce(handleSearch, 500)}
+        <>
+            <div className="relative flex h-16 w-full justify-between px-6 py-3">
+                <div className="flex items-center gap-4">
+                    <SidebarSheet
+                        button={
+                            <ButtonWithIcon
+                                icon={<Menu className="h-4 w-4" />}
+                                variant="ghost"
+                                className="px-3 py-0 lg:hidden"
+                            />
+                        }
                     />
+                    <Separator orientation="vertical" className="lg:hidden" />
+                    <div className="max-lg:pl-4">
+                        <Input
+                            placeholder="Search"
+                            className="w-40 text-base ring-offset-0 transition-[width,colors] duration-300 focus:w-[calc(100%_-_1rem)] focus-visible:ring-0 dark:border-slate-200 dark:bg-slate-200 dark:text-black dark:ring-offset-0 dark:focus:placeholder-purple-700 sm:w-56 sm:focus-visible:w-96"
+                            onChange={debounce(handleSearch, 500)}
+                        />
+                    </div>
                 </div>
-            </div>
-            <div className="flex items-center gap-4">
-                <ViewToggle opts={[viewType, setViewType]} />
-                <ModeToggle />
-                {/* <Button
+                <div className="flex items-center gap-4">
+                    <ViewToggle opts={[viewType, setViewType]} />
+                    <ModeToggle />
+                    {/* <Button
                     onClick={() => {
                         addTask({ ...defaultTasks[0], id: generateID() })
                     }}
                 >
                     Add
                 </Button> */}
+                </div>
             </div>
-        </div>
+            <Separator
+                orientation="horizontal"
+                className="mx-auto h-[2px] w-[calc(100%_-_2rem)] dark:bg-slate-700"
+            />
+        </>
     )
 }
 
