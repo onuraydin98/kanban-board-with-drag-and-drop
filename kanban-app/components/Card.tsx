@@ -14,7 +14,7 @@ export function Card({ task, children, className, ...props }: CardProps) {
         <div
             {...props}
             className={cn(
-                "group flex h-[150px] min-h-[150px] w-full cursor-grab resize-none flex-col items-start justify-between gap-8 rounded-lg bg-indigo-200 p-2 text-sm @container/card hover:scale-[1.02] dark:bg-teal-900",
+                "group flex h-[150px] min-h-[150px] xl:min-h-[200px] xl:h-[200px] w-full cursor-grab resize-none flex-col items-start justify-between gap-8 rounded-lg bg-indigo-200 p-2 text-sm @container/card hover:scale-[1.02] transition-transform duration-200 dark:bg-teal-900",
                 className,
             )}
         >
@@ -67,7 +67,7 @@ export function SortableCard({ task, ...props }: CardProps) {
             <div
                 ref={setNodeRef}
                 style={style}
-                className="relative h-[150px] min-h-[150px] w-full rounded-lg border-none bg-gradient-to-tl from-slate-600 via-indigo-300 to-slate-100 text-sm dark:from-slate-100 dark:via-teal-700 dark:to-slate-900 dark:to-70%"
+                className="relative h-[150px] min-h-[150px] xl:min-h-[200px] xl:h-[200px] w-full rounded-lg border-none bg-gradient-to-tl from-slate-600 via-indigo-300 to-slate-100 text-sm dark:from-slate-100 dark:via-teal-700 dark:to-slate-900 dark:to-70%"
             />
         )
     }

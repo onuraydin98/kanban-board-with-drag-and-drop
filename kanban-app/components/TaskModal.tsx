@@ -84,6 +84,7 @@ const TaskModal = ({ open, onOpenChange }: Props) => {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         addTask({ ...values, id: generateId() })
+        onOpenChange!(false)
     }
 
     return (
@@ -224,9 +225,6 @@ const TaskModal = ({ open, onOpenChange }: Props) => {
                             <Button
                                 type="submit"
                                 className="text-white dark:text-dark dark:focus-visible:outline-teal-600"
-                                onSubmit={() => {
-                                    onOpenChange!(false)
-                                }}
                             >
                                 Submit
                             </Button>

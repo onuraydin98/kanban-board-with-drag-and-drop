@@ -132,7 +132,7 @@ export default function MainBoard() {
         >
             <main
                 className={cn(
-                    "grid grid-cols-1 gap-8 p-4 transition-all duration-300 ease-in-out",
+                    "grid grid-cols-1 gap-8 xs:p-4 transition-all duration-300 ease-in-out",
                     viewType === "grid" &&
                         "md:grid md:flex-1 md:grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))]",
                 )}

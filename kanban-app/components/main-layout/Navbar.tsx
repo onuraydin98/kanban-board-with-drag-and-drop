@@ -157,7 +157,7 @@ const Navbar = ({ viewTypeConfig }: NavbarProps) => {
 
     return (
         <>
-            <div className="relative flex h-16 w-full justify-between px-6 py-3">
+            <div className="relative flex h-16 w-full justify-between xs:px-6 px-2 py-3">
                 <div className="flex items-center gap-4">
                     <Button
                         variant="outline"

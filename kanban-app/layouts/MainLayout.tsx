@@ -21,7 +21,7 @@ const MainLayout = ({
     return (
         <div className="flex h-full">
             <Sidebar />
-            <div className="ml-52 flex flex-1 flex-col max-lg:ml-0 2xl:ml-64 ">
+            <div className="ml-52 flex flex-1 flex-col max-w-[100dvw] max-lg:ml-0 2xl:ml-64 ">
                 <div className="flex flex-col">
                     <Navbar viewTypeConfig={[viewType, setViewType]} />
                     <Breadcrumb />

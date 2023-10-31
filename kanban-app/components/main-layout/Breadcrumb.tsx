@@ -22,7 +22,7 @@ const Breadcrumb = () => {
         <>
             <nav
                 className={cn(
-                    "flex items-center divide-x-2 divide-slate-800 px-6 py-3 transition-[transform,colors]",
+                    "flex items-center divide-x-2 divide-slate-800 dark:divide-slate-100 px-6 py-3 transition-[transform,colors]",
                 )}
             >
                 <a
