@@ -19,7 +19,10 @@ module.exports = {
         },
         extend: {
             boxShadow: {
-                "inner-custom": "inset 0px 0px 13px -4px #7e22cd",
+                "inner-custom": "inset 4px 4px 12px -6px #f1f5f9",
+            },
+            colors: {
+                dark: "#121212",
             },
             keyframes: {
                 "accordion-down": {
@@ -30,19 +33,29 @@ module.exports = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: 0 },
                 },
-                "coin-flip": {
-                    "0%": {
+                "3d-flip": {
+                    from: {
                         transform: "rotate3d(0, 0, 0, 0deg)",
                     },
-                    "100%": {
+                    to: {
                         transform: "rotate3d(1, 1, 1, 360deg)",
+                    },
+                },
+                "3d-flip-reverse": {
+                    from: {
+                        transform: "rotate3d(1, 1, 1, 360deg)",
+                    },
+                    to: {
+                        transform: "rotate3d(0, 0, 0, 0deg)",
                     },
                 },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                "coin-flip": "coin-flip 1s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                "3d-flip": "3d-flip .5s cubic-bezier(0.22, 0.61, 0.36, 1)",
+                "3d-flip-reverse":
+                    "3d-flip-reverse .5s cubic-bezier(0.55, 0.06, 0.68, 0.19)",
             },
         },
         screens: {
