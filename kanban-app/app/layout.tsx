@@ -20,7 +20,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={cn(robotoSerif.className, "h-screen")}>
+            <body
+                className={cn(
+                    robotoSerif.className,
+                    "h-screen bg-slate-50 text-dark dark:bg-slate-800 dark:text-slate-50",
+                )}
+            >
                 {" "}
                 <ThemeProvider
                     attribute="class"
