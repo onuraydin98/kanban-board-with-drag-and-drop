@@ -26,11 +26,10 @@ const useListStore = create(
         addTask: task =>
             set(
                 produce((state: Draft<UseListStore>) => {
-                    state.lists.backlog.push(task)
+                    state.lists[task.listType as ListType].push(task)
                 }),
             ),
         changeTaskListType: (taskId, from, to, overTask) =>
-            // Needs to be fixed
             set(
                 produce((state: Draft<UseListStore>) => {
                     const taskIndex = state.lists[from].findIndex(
@@ -45,21 +44,17 @@ const useListStore = create(
                     state.lists[from].splice(taskIndex, 1)
 
                     if (overTask) {
-                        console.log("overTask")
                         state.lists[to].splice(taskIndex, 0, task)
                         return
                     }
                     // Push the task to the target list
-
                     state.lists[to].push(task)
-                    console.log("changeTaskListType")
                 }),
             ),
         bulkUpdate: (taskArray, listType) =>
             set(
                 produce((state: Draft<UseListStore>) => {
                     state.lists[listType] = [...taskArray]
-                    console.log("bulkUpdate")
                 }),
             ),
     })),
