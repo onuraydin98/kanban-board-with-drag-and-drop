@@ -1,7 +1,6 @@
 "use client"
 
 import { useContext, useState } from "react"
-import { ViewContext } from "./MainLayout"
 import {
     DndContext,
     KeyboardSensor,
@@ -9,23 +8,20 @@ import {
     useSensor,
     useSensors,
     closestCorners,
-    closestCenter,
     DragOverlay,
     type DragStartEvent,
     type DragEndEvent,
     type DragOverEvent,
 } from "@dnd-kit/core"
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
+
+import useListStore from "@stores/useListStore"
+import { ListType, type Task } from "@constants/index"
+
+import { ViewContext } from "@layouts/MainLayout"
 import List from "@components/List"
 import { Card } from "@components/Card"
 import { cn } from "@utilities/cn"
-import {
-    defaultLists,
-    defaultTasks,
-    ListType,
-    type Task,
-} from "@constants/index"
-import useListStore from "@stores/useListStore"
 import generateId from "@/utilities/generateId"
 
 export default function MainBoard() {
@@ -34,11 +30,6 @@ export default function MainBoard() {
     const [storeLists, storeBulkUpdate, storeChangeTaskListType] = useListStore(
         state => [state.lists, state.bulkUpdate, state.changeTaskListType],
     )
-
-    const storeListv2 = useListStore.getState().lists
-
-    const [lists, setLists] = useState(defaultLists)
-    const [tasks, setTasks] = useState<Task[]>(defaultTasks)
 
     const [activeTask, setActiveTask] = useState<Task | null>(null)
 
@@ -51,35 +42,20 @@ export default function MainBoard() {
 
     function handleDragStart(event: DragStartEvent) {
         const { active } = event
-        const { id } = active
-
         setActiveTask(active.data.current?.task)
-
-        // console.log("drag start")
-        console.log("active task", active.data.current?.task)
-        const activeIndex = storeLists[
-            active.data.current?.task.listType as ListType
-        ].findIndex(t => t.id === id)
-        console.log("drag start active index", activeIndex)
-        // console.log("tasks", tasks)
-        // console.log(tasks.findIndex(t => t.id === id))
     }
 
-    function handleDragEnd(event: DragEndEvent) {
-        setActiveTask(null)
+    // function handleDragEnd(event: DragEndEvent) {
+    //     setActiveTask(null)
 
-        const { active, over } = event
-        if (!over) return
+    //     const { active, over } = event
+    //     if (!over) return
 
-        const activeId = active.id
-        const overId = over.id
+    //     const activeId = active.id
+    //     const overId = over.id
 
-        if (activeId === overId) return
-
-        // console.log("event", event)
-        // console.log("activeId", activeId)
-        // console.log("overId", overId)
-    }
+    //     if (activeId === overId) return
+    // }
 
     function handleDragOver(event: DragOverEvent) {
         const { active, over } = event
@@ -89,14 +65,6 @@ export default function MainBoard() {
         const overId = over.id
 
         if (activeId === overId) return
-
-        // console.log("active", active, "over", over)
-        // console.log(
-        //     "active-index",
-        //     tasks.findIndex(t => t.id === activeId),
-        //     "over-index",
-        //     tasks.findIndex(t => t.id === overId),
-        // )
 
         const activeTaskListType = active.data.current?.task
             .listType as ListType
@@ -167,7 +135,6 @@ export default function MainBoard() {
                     "grid grid-cols-1 gap-8 p-4 transition-all duration-300 ease-in-out",
                     viewType === "grid" &&
                         "md:grid md:flex-1 md:grid-cols-[repeat(auto-fit,_minmax(100px,_1fr))]",
-                    // viewType === "list" && "grid-cols-1",
                 )}
             >
                 {Object.keys(storeLists).map(listType => (
@@ -182,9 +149,8 @@ export default function MainBoard() {
                         <Card
                             task={activeTask!}
                             id={activeTask.id ?? "overlay-card"}
-                        >
-                            This is card {activeTask.id}
-                        </Card>
+                            className='after:[content=""] after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:h-full after:w-full after:rounded-lg after:p-2 after:opacity-0 after:shadow-inner-custom after:transition-[opacity] after:duration-300 after:ease-linear after:hover:opacity-100 '
+                        />
                     ) : null}
                 </DragOverlay>
             </main>
