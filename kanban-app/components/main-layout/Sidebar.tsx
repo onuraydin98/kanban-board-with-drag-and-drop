@@ -10,84 +10,85 @@ import {
     HelpCircle,
     BellRing,
     type LucideProps,
+    LucideIcon,
 } from "lucide-react"
 import { cn } from "@utilities/cn"
 import Avatar from "@components/Avatar"
 import { Separator } from "@components/ui/separator"
-import { Button, ButtonWithIcon } from "@components/ui/button"
+import { Button, buttonVariants } from "@components/ui/button"
 
-type NavigationMenu = {
+export type NavigationMenu = {
     text: string
     href: string
-    icon: React.ReactElement<LucideProps>
+    Icon: LucideIcon
     isActive: boolean
 }
 
-const upperNavigationMenu: NavigationMenu[] = [
+export const upperNavigationMenu: NavigationMenu[] = [
     {
         text: "Dashboard",
         href: "#dashboard",
-        icon: <Home className="h-5 w-5" />,
+        Icon: Home,
         isActive: true,
     },
     {
         text: "Feedback",
         href: "#feedback",
-        icon: <MessageSquare className="h-5 w-5" />,
+        Icon: MessageSquare,
         isActive: false,
     },
     {
         text: "Task",
         href: "#task",
-        icon: <ListChecks className="h-5 w-5" />,
+        Icon: ListChecks,
         isActive: false,
     },
     {
         text: "Roadmap",
         href: "#roadmap",
-        icon: <Compass className="h-5 w-5" />,
+        Icon: Compass,
         isActive: false,
     },
     {
         text: "Changelog",
         href: "#changelog",
-        icon: <RefreshCw className="h-5 w-5" />,
+        Icon: RefreshCw,
         isActive: false,
     },
 ]
 
-const lowerNavigationMenu: NavigationMenu[] = [
+export const lowerNavigationMenu: NavigationMenu[] = [
     {
         text: "Invite People",
         href: "#invite",
-        icon: <Plus className="h-5 w-5" />,
+        Icon: Plus,
         isActive: false,
     },
     {
         text: "Help & Comm.",
         href: "#help-community",
-        icon: <HelpCircle className="h-5 w-5" />,
+        Icon: HelpCircle,
         isActive: false,
     },
     {
         text: "Notifications",
         href: "#notifications",
-        icon: <BellRing className="h-5 w-5" />,
+        Icon: BellRing,
         isActive: false,
     },
 ]
 
 const Sidebar = () => {
     return (
-        <aside className="fixed flex h-full w-52 flex-col p-3 max-lg:hidden 2xl:w-64">
-            <div className="dark:dark-gradient-text-r group flex h-[3.25rem] items-start justify-start gap-1 pl-4 transition-colors hover:text-slate-50">
+        <aside className="group fixed flex h-full w-52 flex-col bg-indigo-200 p-3 dark:bg-slate-900 max-lg:hidden 2xl:w-64">
+            <div className="dark:dark-gradient-text-r gradient-text-r flex h-[3.25rem] items-start justify-start gap-1 pl-4 transition-colors hover:text-slate-800 dark:hover:text-slate-50">
                 <Kanban
                     className={cn(
-                        "group-hover:animate-coin-flip h-6 w-6 text-purple-700 delay-200 duration-200 group-hover:text-slate-50",
+                        "h-6 w-6 text-indigo-400 delay-200 duration-200 group-hover:animate-3d-flip group-hover:text-slate-800 dark:text-teal-600 dark:group-hover:text-slate-50",
                         // "rounded-full shadow-[inset_0px_-2px_2px_white]" Ball shadow?
                     )}
                 />
-                <h2 className="delay-150 duration-150 [line-height:1em]">
+                <h2 className="delay-150 duration-150 [line-height:1em] group-hover:text-slate-800 dark:group-hover:text-slate-50">
                     Board
                 </h2>
             </div>
@@ -96,19 +97,18 @@ const Sidebar = () => {
                 <ul className="flex w-full flex-col gap-2">
                     {upperNavigationMenu.map((element, idx) => (
                         <li key={`up-nav-${idx}`}>
-                            <ButtonWithIcon
-                                icon={element.icon}
-                                variant="ghost"
-                                key={element.text}
-                                type="button"
+                            <a
+                                href={element.href}
                                 className={cn(
-                                    "w-full items-center justify-start gap-2 text-base hover:text-slate-700 dark:hover:text-slate-200",
+                                    buttonVariants({ variant: "ghost" }),
+                                    "w-full items-center justify-start gap-2 text-base hover:text-indigo-400 dark:hover:text-teal-600",
                                     element.isActive &&
-                                        "bg-slate-100 dark:bg-slate-800",
+                                        "bg-slate-100 text-indigo-400 dark:bg-slate-800 dark:text-slate-100",
                                 )}
                             >
-                                <a href={element.href}>{element.text}</a>
-                            </ButtonWithIcon>
+                                <element.Icon className="h-5 w-5" />
+                                {element.text}
+                            </a>
                         </li>
                     ))}
                 </ul>
@@ -116,39 +116,42 @@ const Sidebar = () => {
                 <ul className="flex w-full flex-col gap-2">
                     {lowerNavigationMenu.map((element, idx) => (
                         <li key={`down-nav-${idx}`}>
-                            <ButtonWithIcon
-                                icon={element.icon}
-                                variant="ghost"
-                                key={element.text}
-                                type="button"
+                            <a
+                                href={element.href}
                                 className={cn(
-                                    "w-full items-center justify-start gap-2 text-base hover:text-slate-700 dark:hover:text-slate-200",
+                                    buttonVariants({ variant: "ghost" }),
+                                    "w-full items-center justify-start gap-2 text-base hover:text-indigo-400 dark:hover:text-teal-600",
                                     element.isActive &&
-                                        "bg-slate-100 dark:bg-slate-800",
+                                        "bg-slate-100 text-indigo-400 dark:bg-slate-800 dark:text-slate-100",
                                 )}
                             >
-                                <a href={element.href}>{element.text}</a>
-                            </ButtonWithIcon>
+                                <element.Icon className="h-5 w-5" />
+                                {element.text}
+                            </a>
                         </li>
                     ))}
                 </ul>
             </nav>
             <Separator
                 orientation="vertical"
-                className="absolute ml-[12.2rem] h-[calc(100%_-_1.8rem)] w-[2px] dark:bg-slate-700 2xl:ml-[15.2rem]"
+                className="absolute ml-[12.2rem] w-[1px] -translate-y-[0.8rem] bg-gradient-to-t from-indigo-400 to-slate-50 dark:from-slate-800 dark:to-slate-100 2xl:ml-[15.2rem]"
             />
             <Separator
                 orientation="horizontal"
-                className="sm my-2 h-[2px] dark:bg-slate-700"
+                className="sm my-2 h-[2px] bg-gradient-to-r from-slate-50 to-indigo-400 dark:from-slate-800 dark:to-slate-100"
             />
-            <div className="w-full">
+            <div className="group/user w-full">
                 <Button
                     variant="ghost"
                     type="button"
-                    className="w-full items-center justify-start gap-2 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-base text-transparent hover:text-slate-700 dark:hover:text-slate-200"
+                    className="w-full items-center justify-start gap-2 bg-gradient-to-r from-indigo-400 to-slate-900 bg-clip-text text-base text-transparent hover:text-slate-700 dark:from-teal-600 dark:to-slate-100 dark:hover:text-slate-100"
                 >
-                    <Avatar src="https://github.com/shadcn.png" alt="@shadcn" />
-                    Eric Clarkin
+                    <Avatar
+                        src="https://avatars.githubusercontent.com/u/32241352?s=400&u=4882818a0b850c5a51b5223dfbe766583d659365&v=4"
+                        alt="@onuraydin98"
+                        className="group-hover/user:outline-slate-900 group-hover/user:dark:outline-slate-100"
+                    />
+                    Onur Aydin
                 </Button>
             </div>
         </aside>
