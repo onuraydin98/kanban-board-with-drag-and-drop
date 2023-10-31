@@ -9,7 +9,6 @@ import {
     Plus,
     HelpCircle,
     BellRing,
-    type LucideProps,
     LucideIcon,
 } from "lucide-react"
 import { cn } from "@utilities/cn"
@@ -85,7 +84,6 @@ const Sidebar = () => {
                 <Kanban
                     className={cn(
                         "h-6 w-6 text-indigo-400 delay-200 duration-200 group-hover:animate-3d-flip group-hover:text-slate-800 dark:text-teal-600 dark:group-hover:text-slate-50",
-                        // "rounded-full shadow-[inset_0px_-2px_2px_white]" Ball shadow?
                     )}
                 />
                 <h2 className="delay-150 duration-150 [line-height:1em] group-hover:text-slate-800 dark:group-hover:text-slate-50">

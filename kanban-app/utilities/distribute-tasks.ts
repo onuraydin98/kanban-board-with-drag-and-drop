@@ -23,10 +23,6 @@ const distributeTasks = (tasks: Task[]) => {
         }
     })
 
-    // for (let list in lists) {
-    //     lists[list as ListType].sort()
-    // }
-
     return lists
 }
 

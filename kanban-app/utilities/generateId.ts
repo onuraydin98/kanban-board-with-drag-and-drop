@@ -3,8 +3,6 @@ import type { ListType } from "@constants/index"
 
 const idQueue: number[] = []
 
-// Still not sure
-
 const generateId = () => {
     const lists = useListStore.getState().lists
 

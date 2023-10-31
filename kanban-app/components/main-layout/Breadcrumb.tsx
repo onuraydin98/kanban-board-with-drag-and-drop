@@ -17,8 +17,6 @@ const links = [
     },
 ]
 
-// export interface Breadcrumb extends React.HTMLAttributes<HTMLDivElement> {}
-
 const Breadcrumb = () => {
     return (
         <>

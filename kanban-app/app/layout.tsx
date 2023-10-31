@@ -1,11 +1,9 @@
 import { cn } from "@/utilities/cn"
 import "./globals.css"
 import { ThemeProvider } from "@components/ThemeProvider"
-import { Inter, Roboto_Serif } from "next/font/google"
+import { Roboto_Serif } from "next/font/google"
 import type { Metadata } from "next"
 
-// Will be decided
-const inter = Inter({ subsets: ["latin"] })
 const robotoSerif = Roboto_Serif({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
